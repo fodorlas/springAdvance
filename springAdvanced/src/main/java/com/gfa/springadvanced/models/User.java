@@ -1,7 +1,13 @@
 package com.gfa.springadvanced.models;
 
 
+import com.gfa.springadvanced.services.MyApiService;
 import jakarta.persistence.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import retrofit2.Call;
+
+import java.io.IOException;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -14,8 +20,10 @@ public class User {
     private String password;
     private String email;
 
+
     public User() {
     }
+
     public User(String username, String password, String email) {
         this.username = username;
         this.password = password;
@@ -54,3 +62,5 @@ public class User {
         this.email = email;
     }
 }
+
+
