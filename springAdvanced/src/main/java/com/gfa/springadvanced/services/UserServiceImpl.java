@@ -22,13 +22,13 @@ public class UserServiceImpl implements UserService{
     @Override
     public User registerUser(String username, String password, String email) throws IllegalArgumentException{
         Optional<User> optionalUser = findUserByUsername(username);
-        if (optionalUser.isPresent()) throw new IllegalArgumentException("User already exist");
+        if (optionalUser.isPresent()) throw new IllegalArgumentException("User already exists");
         User user = new User(username, password, email);
 
         return userRepository.save(user);
     }
-
-    private Optional<User> findUserByUsername(String username) {
+    @Override
+    public Optional<User> findUserByUsername(String username) {
         return Optional.empty();
     }
 }
