@@ -32,13 +32,17 @@ public class Movie {
     public Movie() {
     }
 
-    public Movie(Long movieId, String originalLanguage, String originalTitle, String overview, String title, String genreId) {
+    public Movie(Long movieId, String originalLanguage, String originalTitle, String overview, String title, List<Integer> genreId) {
         this.movieId = movieId;
         this.originalLanguage = originalLanguage;
         this.originalTitle = originalTitle;
         this.overview = overview;
         this.title = title;
-        this.genreId = genreId;
+        StringBuilder sb = new StringBuilder();
+        for ( Integer id : genreId ) {
+            sb.append(id).append(" ");
+        }
+        this.genreId = sb.toString();
     }
 
     public Long getId() {
@@ -93,7 +97,11 @@ public class Movie {
         return genreId;
     }
 
-    public void setGenreId(String genreId) {
-        this.genreId = genreId;
+    public void setGenreId(List<Integer> genreId) {
+        StringBuilder sb = new StringBuilder();
+        for ( Integer id : genreId ) {
+            sb.append(id).append(" ");
+        }
+        this.genreId = sb.toString();
     }
 }
