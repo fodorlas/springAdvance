@@ -1,6 +1,5 @@
 package com.gfa.springadvanced.services.retrofitServices;
 
-import com.gfa.springadvanced.models.DTOs.MoviesDTO;
 import com.gfa.springadvanced.models.DTOs.ResultDTO;
 import org.springframework.stereotype.Service;
 import retrofit2.Call;
@@ -32,6 +31,5 @@ public class ApiRetrofitServicesImpl implements ApiRetrofitServices {
     public Call<ResultDTO> listMovies(@Query("api_key") String apiKey, @Query("query") String query) {
         return service.listMovies(apiKey, query);
     }
-
 
 }

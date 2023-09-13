@@ -1,6 +1,5 @@
 package com.gfa.springadvanced.models;
 
-
 import jakarta.persistence.*;
 
 @Entity

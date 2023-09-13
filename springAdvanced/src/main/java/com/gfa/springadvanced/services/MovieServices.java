@@ -18,21 +18,5 @@ public interface MovieServices {
 
     ResponseEntity<?> getAllMoviesFromDb();
 
-    //    public ResponseEntity<List<MoviesDTO>> getAllMoviesFromDB2() {
-    //        List<MoviesDTO> result = movieRepository.findAll().stream()
-    //                .map(o -> new MoviesDTO(
-    //                        o.getMovieId(),
-    //                        o.getOriginalTitle(),
-    //                        o.getOriginalLanguage(),
-    //                        o.getTitle(),
-    //                        o.getOverview(),
-    //                        o.getGenreId().)
-    //                .collect(Collectors.toList());
-    //    }
-    //
-    //    public ResponseEntity<List<MoviesDTO>> getAllMoviesFromDB3() {
-    //        List<MovieDTO> result = movieRepository.findAll().stream()
-    //                .map(o -> new MoviesDTO(o))
-    //    }
     ResponseEntity<List<MoviesDTO>> getAllMoviesFromDB4();
 }

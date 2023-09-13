@@ -18,7 +18,6 @@ public class SpringAdvancedApplication implements CommandLineRunner {
         this.userRepository = userRepository;
     }
 
-
     public static void main(String[] args) {
         SpringApplication.run(SpringAdvancedApplication.class, args);
     }
