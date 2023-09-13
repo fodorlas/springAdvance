@@ -1,11 +1,8 @@
 package com.gfa.springadvanced.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import com.gfa.springadvanced.models.DTOs.MoviesDTO;
+import jakarta.persistence.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -21,7 +18,7 @@ public class Movie {
     private String originalLanguage;
 
     private String originalTitle;
-
+    @Column(length = 1000)
     private String overview;
 
     private String title;
@@ -30,6 +27,19 @@ public class Movie {
 
 
     public Movie() {
+    }
+
+    public Movie(MoviesDTO moviesDTO) {
+        this.movieId = moviesDTO.getId();
+        this.originalLanguage = moviesDTO.getOriginalLanguage();
+        this.originalTitle = moviesDTO.getOriginalTitle();
+        this.overview = moviesDTO.getOverview();
+        this.title = moviesDTO.getTitle();
+        StringBuilder sb = new StringBuilder();
+        for ( Integer id : moviesDTO.getGenreId() ) {
+            sb.append(id).append(" ");
+        }
+        this.genreId = sb.toString();
     }
 
     public Movie(Long movieId, String originalLanguage, String originalTitle, String overview, String title, List<Integer> genreId) {
