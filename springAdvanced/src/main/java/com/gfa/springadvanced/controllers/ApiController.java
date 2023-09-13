@@ -27,7 +27,7 @@ public class ApiController {
 
     @GetMapping("/movies")
     public ResponseEntity<?> listMovies(){
-        Call<List<MoviesDTO>> call = apiRetrofitServices.listMovies(query);
+        Call<List<MoviesDTO>> call = apiRetrofitServices.listMovies("deadpool");
         Response<List<MoviesDTO>> response = null;
         try {
             response = call.execute();
