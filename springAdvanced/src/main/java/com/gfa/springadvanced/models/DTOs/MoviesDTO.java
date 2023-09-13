@@ -2,7 +2,6 @@ package com.gfa.springadvanced.models.DTOs;
 
 import com.gfa.springadvanced.models.Movie;
 import com.google.gson.annotations.SerializedName;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -16,9 +15,7 @@ public class MoviesDTO {
     private String originalLanguage;
     @SerializedName("original_title")
     private String originalTitle;
-
     private String overview;
-
     private String title;
     @SerializedName("genre_ids")
     private List<Integer> genreId = new ArrayList<>();
@@ -32,19 +29,20 @@ public class MoviesDTO {
         this.originalTitle = movie.getOriginalTitle();
         this.overview = movie.getOverview();
         this.title = movie.getTitle();
-//        if ( !movie.getGenreId().isEmpty()) {
-//            this.genreId = Arrays.stream(movie.getGenreId().split(" "))
-//                    .map(Integer::parseInt)
-//                    .collect(Collectors.toList());
-//        }
+//  Solution 1
         if ( !movie.getGenreId().isEmpty()) {
-            String[] genreIds;
-            genreIds = movie.getGenreId().split(" ");
-            for ( String string : genreIds ) {
-                this.genreId.add(Integer.parseInt(string));
-            }
+            this.genreId = Arrays.stream(movie.getGenreId().split(" "))
+                    .map(Integer::parseInt)
+                    .collect(Collectors.toList());
         }
-
+//  Solution 2
+//        if ( !movie.getGenreId().isEmpty()) {
+//            String[] genreIds;
+//            genreIds = movie.getGenreId().split(" ");
+//            for ( String string : genreIds ) {
+//                this.genreId.add(Integer.parseInt(string));
+//            }
+//        }
 
     }
 

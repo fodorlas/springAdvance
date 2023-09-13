@@ -7,17 +7,12 @@ import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.GET;
-import retrofit2.http.Header;
-import retrofit2.http.Headers;
 import retrofit2.http.Query;
-
-import java.util.List;
 
 @Service
 public class ApiRetrofitServicesImpl implements ApiRetrofitServices {
 
     private final String apiKey = "e0a94ad12e5bb18854f2b7245907b48a";
-
 
     //https://api.themoviedb.org/3/search/movie?query=deadpool
     Retrofit retrofit = new Retrofit.Builder()
