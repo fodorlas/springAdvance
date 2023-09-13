@@ -6,18 +6,18 @@ import java.util.List;
 
 public class MoviesDTO {
 
-@SerializedName("id")
-private Long movieId;
+    @SerializedName("id")
+    private Long movieId;
+    @SerializedName("original_language")
+    private String originalLanguage;
+    @SerializedName("original_title")
+    private String originalTitle;
 
-private String originalLanguage;
+    private String overview;
 
-private String originalTitle;
-
-private String overview;
-
-private String title;
-
-private List<Integer> genreId;
+    private String title;
+    @SerializedName("genre_ids")
+    private List<Integer> genreId;
 
     public MoviesDTO() {
     }
