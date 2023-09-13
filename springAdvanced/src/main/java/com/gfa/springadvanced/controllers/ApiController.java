@@ -40,25 +40,15 @@ public class ApiController {
 
         return movieServices.getMoviesByName(title);
 
-            // validation
-            // check movies
-            // if not found -> pull movies from API
-            // save movies
-            // check again?
-
-            // check movies should use getMoviesByTitle()
         }
+
+    @GetMapping("/movies/findall")
+    public ResponseEntity<?> listMoviesFromDb() {
+
+
+        return movieServices.getAllMoviesFromDB4();
+
+    }
 }
 
-//    @GetMapping("/movies")
-//    public ResponseEntity<?> listMovies(){
-//        Call<List<MoviesDTO>> call = apiRetrofitServices.listMovies("deadpool");
-//        Response<List<MoviesDTO>> response = null;
-//        try {
-//            response = call.execute();
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
-//        List<MoviesDTO> movies = response.body();
-//        return ResponseEntity.ok(movies);
-//    }
+

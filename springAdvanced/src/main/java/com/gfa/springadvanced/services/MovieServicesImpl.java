@@ -12,8 +12,10 @@ import retrofit2.Call;
 import retrofit2.Response;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class MovieServicesImpl implements MovieServices {
@@ -77,4 +79,41 @@ public class MovieServicesImpl implements MovieServices {
         return movieRepository.findByTitle(title);
     }
 
+    @Override
+    public ResponseEntity<?> getAllMoviesFromDb() {
+        List<MoviesDTO> listOfMoviesDTO = new ArrayList<>();
+        List<Movie> listOfMovies = movieRepository.findAll();
+        if (!listOfMovies.isEmpty()) {
+            for ( Movie movie : listOfMovies ) {
+                listOfMoviesDTO.add(new MoviesDTO(movie));
+            }
+        }
+        return ResponseEntity.ok(listOfMoviesDTO);
+
+    }
+
+//    public ResponseEntity<List<MoviesDTO>> getAllMoviesFromDB2() {
+//        List<MoviesDTO> result = movieRepository.findAll().stream()
+//                .map(o -> new MoviesDTO(
+//                        o.getMovieId(),
+//                        o.getOriginalTitle(),
+//                        o.getOriginalLanguage(),
+//                        o.getTitle(),
+//                        o.getOverview(),
+//                        o.getGenreId().)
+//                .collect(Collectors.toList());
+//    }
+//
+//    public ResponseEntity<List<MoviesDTO>> getAllMoviesFromDB3() {
+//        List<MovieDTO> result = movieRepository.findAll().stream()
+//                .map(o -> new MoviesDTO(o))
+//    }
+    @Override
+    public ResponseEntity<List<MoviesDTO>> getAllMoviesFromDB4() {
+    List<MoviesDTO> result = movieRepository.findAll().stream()
+            .map(MoviesDTO::new)
+            .collect(Collectors.toList());
+
+    return ResponseEntity.ok(result);
+    }
 }

@@ -18,7 +18,8 @@ public class Movie {
     private String originalLanguage;
 
     private String originalTitle;
-    @Column(length = 1000)
+    @Column(columnDefinition = "TEXT")
+//    @Column(length = 1000)
     private String overview;
 
     private String title;

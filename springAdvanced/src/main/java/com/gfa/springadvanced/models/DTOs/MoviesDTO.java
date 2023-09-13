@@ -1,8 +1,12 @@
 package com.gfa.springadvanced.models.DTOs;
 
+import com.gfa.springadvanced.models.Movie;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class MoviesDTO {
 
@@ -17,9 +21,31 @@ public class MoviesDTO {
 
     private String title;
     @SerializedName("genre_ids")
-    private List<Integer> genreId;
+    private List<Integer> genreId = new ArrayList<>();
 
     public MoviesDTO() {
+    }
+
+    public MoviesDTO( Movie movie) {
+        this.movieId = movie.getMovieId();
+        this.originalLanguage = movie.getOriginalLanguage();
+        this.originalTitle = movie.getOriginalTitle();
+        this.overview = movie.getOverview();
+        this.title = movie.getTitle();
+//        if ( !movie.getGenreId().isEmpty()) {
+//            this.genreId = Arrays.stream(movie.getGenreId().split(" "))
+//                    .map(Integer::parseInt)
+//                    .collect(Collectors.toList());
+//        }
+        if ( !movie.getGenreId().isEmpty()) {
+            String[] genreIds;
+            genreIds = movie.getGenreId().split(" ");
+            for ( String string : genreIds ) {
+                this.genreId.add(Integer.parseInt(string));
+            }
+        }
+
+
     }
 
     public MoviesDTO(Long movieId, String originalLanguage, String originalTitle, String overview, String title, List<Integer> genreId) {
