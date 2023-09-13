@@ -1,6 +1,7 @@
 package com.gfa.springadvanced.services.retrofitServices;
 
 import com.gfa.springadvanced.models.DTOs.MoviesDTO;
+import org.springframework.stereotype.Service;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -10,6 +11,7 @@ import retrofit2.http.Query;
 
 import java.util.List;
 
+@Service
 public class ApiRetrofitServicesImpl implements ApiRetrofitServices {
 
     private final String apiKey = "e0a94ad12e5bb18854f2b7245907b48a";
