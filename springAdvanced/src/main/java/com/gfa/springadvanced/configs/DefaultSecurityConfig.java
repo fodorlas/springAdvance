@@ -15,20 +15,23 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 @EnableWebSecurity
-//@EnableMethodSecurity
+@EnableMethodSecurity
 public class DefaultSecurityConfig {
 
     @Bean
     SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
 
-
-
         http.authorizeHttpRequests((requests) -> requests
-//                        .requestMatchers("/register").permitAll(
-//              .requestMatchers("/movies", "/movies/findall").authenticated());
+                        .requestMatchers("/api/register").permitAll()
+              .requestMatchers("/movies", "/movies/findall").authenticated())
+                .csrf((csrf) -> csrf.disable());
 //               .requestMatchers("/movies", "/movies/findall", "/register").permitAll());
-                .anyRequest().permitAll());
-                http.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
+//                .anyRequest().permitAll());
+//                http.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+//                        .csrf((csrf) -> csrf
+//                                .ignoringRequestMatchers("/api/*")
+//                        );
+//                        .csrf((csrf) -> csrf.disable());
         return http.build();
     }
 

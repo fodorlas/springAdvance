@@ -5,14 +5,14 @@ import com.gfa.springadvanced.services.MovieServices;
 import com.gfa.springadvanced.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.Optional;
 
-@org.springframework.web.bind.annotation.RestController
+//@org.springframework.web.bind.annotation.RestController
+@RestController
 public class ApiController {
+
 
     private final UserService userService;
     private final MovieServices movieServices;
@@ -37,11 +37,12 @@ public class ApiController {
         return movieServices.getAllMoviesFromDB4();
     }
 
-    @PostMapping("/registration")
-    public ResponseEntity<String> registerUser(@RequestBody UserRegisterDTO userRegisterDTO) {
-
-        return ResponseEntity.ok("All good");
-    }
+//    @PostMapping("/api/registruj")
+//    public ResponseEntity<String> registerUser(@RequestBody(required = false) UserRegisterDTO userRegisterDTO) {
+////    public ResponseEntity<String> registerUser() {
+//
+//        return ResponseEntity.ok("All good");
+//    }
 
 }
 

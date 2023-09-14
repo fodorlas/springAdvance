@@ -28,6 +28,13 @@ public class UserController {
         this.passwordEncoder = passwordEncoder;
     }
 
+    @PostMapping("/api/register")
+    public ResponseEntity<String> registerUser(@RequestBody(required = false) UserRegisterDTO userRegisterDTO) {
+//    public ResponseEntity<String> registerUser() {
+
+        return ResponseEntity.ok("All good");
+    }
+
 
 //    @PostMapping("/register")
 //    public ResponseEntity<String> registerUser(@RequestBody UserRegisterDTO userRegisterDTO) {
