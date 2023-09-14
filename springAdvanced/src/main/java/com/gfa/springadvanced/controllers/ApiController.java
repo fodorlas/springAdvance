@@ -1,10 +1,13 @@
 package com.gfa.springadvanced.controllers;
 
+import com.gfa.springadvanced.models.DTOs.UserRegisterDTO;
 import com.gfa.springadvanced.services.MovieServices;
 import com.gfa.springadvanced.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import java.util.Optional;
 
@@ -34,7 +37,11 @@ public class ApiController {
         return movieServices.getAllMoviesFromDB4();
     }
 
+    @PostMapping("/registration")
+    public ResponseEntity<String> registerUser(@RequestBody UserRegisterDTO userRegisterDTO) {
 
+        return ResponseEntity.ok("All good");
+    }
 
 }
 
