@@ -52,11 +52,11 @@ public class UserController {
 //        return response;
 //    }
 
-    @PostMapping("/register")
-    public ResponseEntity<String> registerUser(@RequestBody UserRegisterDTO userRegisterDTO) {
-
-        return ResponseEntity.ok("All good");
-    }
+//    @PostMapping("/registration")
+//    public ResponseEntity<String> registerUser(@RequestBody UserRegisterDTO userRegisterDTO) {
+//
+//        return ResponseEntity.ok("All good");
+//    }
 
 
 }
