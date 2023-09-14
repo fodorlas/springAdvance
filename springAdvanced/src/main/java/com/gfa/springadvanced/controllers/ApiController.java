@@ -32,8 +32,10 @@ public class ApiController {
     public ResponseEntity<?> listMoviesFromDb() {
 
         return movieServices.getAllMoviesFromDB4();
-
     }
+
+
+
 }
 
 

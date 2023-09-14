@@ -1,5 +1,6 @@
 package com.gfa.springadvanced.services;
 
+import com.gfa.springadvanced.models.DTOs.UserRegisterDTO;
 import com.gfa.springadvanced.models.User;
 import com.gfa.springadvanced.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,8 +25,29 @@ public class UserServiceImpl implements UserService{
 
         return userRepository.save(user);
     }
+
+    @Override
+    public User registerUser(User user) throws IllegalArgumentException{
+        Optional<User> optionalUser = findUserByUsername(user.getUsername());
+        if (optionalUser.isPresent()) throw new IllegalArgumentException("User already exists");
+        return userRepository.save(user);
+    }
+
     @Override
     public Optional<User> findUserByUsername(String username) {
         return Optional.empty();
     }
+
+    @Override
+    public User convertUserRegistrationDTO(UserRegisterDTO userRegisterDTO) {
+
+        if (userRegisterDTO.getPassword1().equals(userRegisterDTO.getPassword2()) &&
+                !userRegisterDTO.getUsername().isEmpty() &&
+                !userRegisterDTO.getEmail().isEmpty()) {
+            return new User(userRegisterDTO.getUsername(), userRegisterDTO.getPassword1(), userRegisterDTO.getEmail());
+        }
+        return null;
+    }
+
+
 }
