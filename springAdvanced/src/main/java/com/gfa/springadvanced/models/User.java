@@ -12,6 +12,8 @@ public class User {
     private String username;
     private String password;
     private String email;
+//    private String roles= "USER";
+    private String roles= "ROLE_USER";
 
     public User() {
     }
@@ -19,6 +21,22 @@ public class User {
         this.username = username;
         this.password = password;
         this.email = email;
+    }
+
+    public User(Long id, String username, String password, String email, String roles) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.roles = roles;
+    }
+
+    public String getRoles() {
+        return roles;
+    }
+
+    public void setRoles(String roles) {
+        this.roles = roles;
     }
 
     public Long getId() {
@@ -52,4 +70,7 @@ public class User {
     public void setEmail(String email) {
         this.email = email;
     }
+
+
+
 }
