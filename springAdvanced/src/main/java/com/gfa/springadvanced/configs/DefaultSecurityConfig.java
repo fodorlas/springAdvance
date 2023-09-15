@@ -1,6 +1,8 @@
 package com.gfa.springadvanced.configs;
 
+import com.gfa.springadvanced.filters.JwtAuthFilter;
 import com.gfa.springadvanced.services.retrofitServices.UserInfoUserDetailsService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -14,6 +16,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 
 @Configuration
@@ -26,13 +29,30 @@ public class DefaultSecurityConfig {
         return new UserInfoUserDetailsService();
     }
 
+    @Autowired
+    private JwtAuthFilter authFilter;
+
     @Bean
     SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
 
         http.authorizeHttpRequests((requests) -> requests
                         .requestMatchers("/api/register", "/api/login").permitAll()
-              .requestMatchers("/movies", "/movies/findall").authenticated())
+              .requestMatchers("/movies", "/movies/findall","/api/isRunning").authenticated())
                 .csrf((csrf) -> csrf.disable());
+//                http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                http.authenticationProvider(authenticationProvider())
+                        .addFilterBefore(authFilter, UsernamePasswordAuthenticationFilter.class);
+
+//        http.authorizeHttpRequests().requestMatchers("/api/addUser", "/api/getToken").permitAll()
+//                .and()
+//                .authorizeHttpRequests().requestMatchers("/api/**").authenticated()
+//                .and()
+//                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+//                .and()
+//                .authenticationProvider(authenticationProvider())
+//                .addFilterBefore(authFilter, UsernamePasswordAuthenticationFilter.class);
+//    }
+
 //               .requestMatchers("/movies", "/movies/findall", "/register").permitAll());
 //                .anyRequest().permitAll());
 //                http.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
